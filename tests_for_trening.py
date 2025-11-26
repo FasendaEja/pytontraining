@@ -18,15 +18,15 @@ def test_addgrup(app):
     # открываем домашнюю страницу
     app.open_home_page()
     #Логинимся
-    app.login("admin", "secret")
+    app.session.login("admin", "secret")
 
     #переходим на вкладку группы
-    app.open_groups_page()
+    app.group.open_groups_page()
     #Создаем новую группу
-    app.create_group(Group( "grup1", "grup1", "grup1"))
+    app.group.create_group(Group( "grup1", "grup1", "grup1"))
     # переходим на вкладку группы
-    app.open_groups_page()
-    app.logout()
+    app.group.open_groups_page()
+    app.session.logout()
 
 
 # тест создание пустой группы
@@ -35,15 +35,15 @@ def test_add_empt_grup(app):
     # открываем домашнюю страницу
     app.open_home_page()
     #Логинимся
-    app.login("admin", "secret")
+    app.session.login("admin", "secret")
     #переходим на вкладку группы
-    app.open_groups_page()
+    app.group.open_groups_page()
     #Создаем новую группу
-    app.create_group(Group("", "", ""))
+    app.group.create_group(Group("", "", ""))
     # переходим на вкладку группы
-    app.open_groups_page()
+    app.group.open_groups_page()
     #выходим из уз
-    app.logout()
+    app.session.logout()
 
  #добавление контракта
 def test_addcontact(app):
@@ -51,7 +51,7 @@ def test_addcontact(app):
     # открываем домашнюю страницу
     app.open_home_page()
     # Логинимся
-    app.login("admin", "secret")
+    app.session.login("admin", "secret")
     app.open_new_contact_page()
     app.create_contact(Contact("fname", "mname",
                                         "lname", "nick",
@@ -64,4 +64,4 @@ def test_addcontact(app):
                                         date(2025, 11, 17)))
 
     # выходим из уз
-    app.logout()
+    app.session.logout()

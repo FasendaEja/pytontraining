@@ -1,37 +1,22 @@
 from selenium import webdriver
-from login_page import login_page
-from w_w_items import w_w_items
+
+from fixture.group import GroupHelper
+from fixture.session import SessionHelper
+
+
 from selenium.webdriver.common.by import By
+from fixture.session import SessionHelper
 
 
 class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+        self.session = SessionHelper(self)
+        self.group = GroupHelper(self)
 
     def destroy(self):
         self.wd.quit()
-
-    def login(self, username, password):
-        wd = self.wd
-        login_page().login(wd, username,password)
-
-    def create_group(self, group):
-        wd=self.wd
-        # Нажимаем создать новую группу
-        wd.find_element(By.NAME, "new").click()
-        # Вводим название группы
-        w_w_items().send_key_by_name(wd, "group_name", group.name)
-        # вводим хэадер группы
-        w_w_items().send_key_by_name(wd, "group_header", group.header)
-        # вводим футер группы
-        w_w_items().send_key_by_name(wd, "group_footer", group.footer)
-        # подтверждаем создание группы
-        wd.find_element("name", "submit").click()
-
-    #открытие страницы группы
-    def open_groups_page(self):
-        self.wd.find_element("link text", "groups").click()
 
 
     # открытие домашней страницы
@@ -39,15 +24,6 @@ class Application:
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 
-    # заполнение текстового поля по имени
-    def send_key_by_name1(self,name,text):
-        wd = self.wd
-        wd.find_element(By.NAME, name).click()
-        wd.find_element(By.NAME, name).clear()
-        wd.find_element(By.NAME, name).send_keys(text)
-
-    def logout(self):
-        self.wd.find_element("link text", "Logout").click()
 
     # Нажатие на кнопку создать контракт
     def open_new_contact_page(self):
