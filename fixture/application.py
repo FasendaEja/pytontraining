@@ -1,10 +1,8 @@
 from selenium import webdriver
-from group import Group
 from login_page import login_page
 from w_w_items import w_w_items
 from selenium.webdriver.common.by import By
-from contact import Contact
-from datetime import date
+
 
 class Application:
     def __init__(self):

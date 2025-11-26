@@ -1,7 +1,7 @@
 
-from application import Application
-from group import Group
-from contact import Contact
+from fixture.application import Application
+from model.group import Group
+from model.contact import Contact
 from datetime import date
 import pytest
 
