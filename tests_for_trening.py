@@ -52,8 +52,8 @@ def test_addcontact(app):
     app.open_home_page()
     # Логинимся
     app.session.login("admin", "secret")
-    app.open_new_contact_page()
-    app.create_contact(Contact("fname", "mname",
+    app.contract.open_new_contact_page()
+    app.contract.create_contact(Contact("fname", "mname",
                                         "lname", "nick",
                                         "title", "comp",
                                         "addrrress", "11111111",
