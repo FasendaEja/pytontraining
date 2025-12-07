@@ -1,5 +1,5 @@
 
-from login_page import login_page
+from fixture.login_page import login_page
 
 class SessionHelper:
 

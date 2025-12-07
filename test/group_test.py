@@ -1,25 +1,16 @@
-
-from fixture.application import Application
 from model.group import Group
-from model.contact import Contact
-from datetime import date
-import pytest
-
-@pytest.fixture
-def app(request):
-    fix=Application()
-    request.addfinalizer(fix.destroy)
-    return fix
+from conftest import *
+from fixture.application import Application
 
 
- #Добавление группы
+
+#Добавление группы
 def test_addgrup(app):
 
     # открываем домашнюю страницу
     app.open_home_page()
     #Логинимся
     app.session.login("admin", "secret")
-
     #переходим на вкладку группы
     app.group.open_groups_page()
     #Создаем новую группу
@@ -45,23 +36,18 @@ def test_add_empt_grup(app):
     #выходим из уз
     app.session.logout()
 
- #добавление контракта
-def test_addcontact(app):
+def test_edit_grup(app):
+    app.open_home_page()
+    app.session.login("admin", "secret")
+    app.group.open_groups_page()
+    app.group.edit_group(Group("new_grup_name", "new_grup_header", "new_grup_footer"))
+    app.session.logout()
 
+def test_delete_first_group(app):
     # открываем домашнюю страницу
     app.open_home_page()
     # Логинимся
     app.session.login("admin", "secret")
-    app.contract.open_new_contact_page()
-    app.contract.create_contact(Contact("fname", "mname",
-                                        "lname", "nick",
-                                        "title", "comp",
-                                        "addrrress", "11111111",
-                                        "22222222", "33333333",
-                                        "44444444", "q@q.com",
-                                        "", "",
-                                        "hp", date(1990, 10, 11),
-                                        date(2025, 11, 17)))
-
+    app.group.delete_first_group()
     # выходим из уз
     app.session.logout()
