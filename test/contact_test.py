@@ -6,10 +6,8 @@ from conftest import *
  #добавление контракта
 def test_addcontact(app):
 
-    # открываем домашнюю страницу
-    app.open_home_page()
-    # Логинимся
-    app.session.login("admin", "secret")
+
+
     app.contract.open_new_contact_page()
     app.contract.create_contact(Contact("fname", "mname",
                                         "lname", "nick",
@@ -27,10 +25,7 @@ def test_addcontact(app):
 
 
 def test_Edit_contact(app):
-    # открываем домашнюю страницу
-    app.open_home_page()
-    # Логинимся
-    app.session.login("admin", "secret")
+
     app.contract.open_contacts_page()
     app.contract.edit_contact(Contact("new_fname", "new_mname",
                                         "new_lname", "new_nick",
@@ -46,8 +41,7 @@ def test_Edit_contact(app):
 
 
 def test_delete_first_contact(app):
-    app.open_home_page()
-    app.session.login("admin", "secret")
+
     app.contract.open_contacts_page()
     app.contract.delete_first_contact()
     # выходим из уз
