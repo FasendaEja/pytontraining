@@ -13,7 +13,7 @@ def test_addgrup(app):
     app.group.create_group(Group( "grup1", "grup1", "grup1"))
     # переходим на вкладку группы
     app.group.open_groups_page()
-    app.session.logout()
+
 
 
 # тест создание пустой группы
@@ -26,23 +26,20 @@ def test_add_empt_grup(app):
     app.group.create_group(Group("", "", ""))
     # переходим на вкладку группы
     app.group.open_groups_page()
-    #выходим из уз
-    app.session.logout()
+
 
 def test_edit_grup(app):
 
     app.group.open_groups_page()
     app.group.edit_first_group(Group("new_grup_name", "new_grup_header", "new_grup_footer"))
-    app.session.logout()
+
 
 def test_edit_grup_name(app):
 
     app.group.open_groups_page()
     app.group.edit_first_group(Group(name="new_grup_name"))
-    app.session.logout()
+
 
 def test_delete_first_group(app):
 
     app.group.delete_first_group()
-    # выходим из уз
-    app.session.logout()
