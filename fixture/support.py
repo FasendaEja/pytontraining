@@ -9,6 +9,10 @@ class   SupportHelper:
         wd.find_element(By.NAME, name).clear()
         wd.find_element(By.NAME, name).send_keys(text)
 
+    def is_not_none_value_send_key_by_name(self,wd, name, value):
+        if value is not None:
+            self.send_key_by_name(wd, name, value)
+
     # выбор значения из дропдауна
     def select_drop_down(self,wd, name, value):
         wd.find_element(By.NAME, name).click()
